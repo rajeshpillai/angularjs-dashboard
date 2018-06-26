@@ -2,17 +2,17 @@ var app = angular.module("myApp", ['gridster','ngDragDrop']);
 
 app.controller('myCtrl', function($scope,$compile) {
   $scope.standardItems = [
-    { id:"box1", sizeX: 10, sizeY: 1, row: 0, col: 0, dropperItems:[], showForm:false },
-    { sizeX: 2, sizeY: 2, row: 0, col: 2 , dropperItems:[], showForm : false},
-    { sizeX: 1, sizeY: 1, row: 0, col: 4, dropperItems:[] , showForm : false},
-    { sizeX: 1, sizeY: 1, row: 0, col: 5, dropperItems:[] , showForm : false},
-    { sizeX: 2, sizeY: 1, row: 1, col: 0, dropperItems:[], showForm : false },
-    { sizeX: 1, sizeY: 1, row: 1, col: 4, dropperItems:[], showForm : false },
-    { sizeX: 1, sizeY: 2, row: 1, col: 5 , dropperItems:[], showForm : false},
-    { sizeX: 1, sizeY: 1, row: 2, col: 0, dropperItems:[], showForm : false },
-    { sizeX: 2, sizeY: 1, row: 2, col: 1, dropperItems:[] , showForm : false},
-    { sizeX: 1, sizeY: 1, row: 2, col: 3, dropperItems:[] , showForm : false},
-    { sizeX: 1, sizeY: 1, row: 2, col: 4, dropperItems:[], showForm : false}
+    { sizeX: 1, sizeY: 1, row: 0, col: 0, droppedItems:[],  showForm:false },
+    { sizeX: 2, sizeY: 5, row: 0, col: 2 , droppedItems:[], showForm : false},
+    { sizeX: 1, sizeY: 1, row: 0, col: 4, droppedItems:[] , showForm : false},
+    { sizeX: 1, sizeY: 1, row: 0, col: 5, droppedItems:[] , showForm : false},
+    { sizeX: 2, sizeY: 1, row: 1, col: 0, droppedItems:[],  showForm : false },
+    { sizeX: 1, sizeY: 1, row: 1, col: 4, droppedItems:[],  showForm : false },
+    { sizeX: 1, sizeY: 2, row: 1, col: 5 , droppedItems:[], showForm : false},
+    { sizeX: 1, sizeY: 1, row: 2, col: 0, droppedItems:[],  showForm : false },
+    { sizeX: 2, sizeY: 1, row: 2, col: 1, droppedItems:[] , showForm : false},
+    { sizeX: 1, sizeY: 1, row: 2, col: 3, droppedItems:[] , showForm : false},
+    { sizeX: 1, sizeY: 1, row: 2, col: 4, droppedItems:[],  showForm : false}
     ];
 
     $scope.listOfDirectives=[{'title': 'kpi', 'type':'kpi','properties':[{'name':'Measure','value':''}]},
@@ -23,6 +23,10 @@ app.controller('myCtrl', function($scope,$compile) {
 
     $scope.list1 = {title: 'AngularJS - Drag Me'};
   $scope.list2 = {};
+
+  $scope.gridsterOpts = {
+    //rowHeight: '1'
+  };
 
   //------------------
 //   $scope.men = [
@@ -73,8 +77,8 @@ app.controller('myCtrl', function($scope,$compile) {
             
          //}
          
-         item.dropperItems =[];
-        item.dropperItems.push($data);
+         item.droppedItems =[];
+        item.droppedItems.push($data);
     };
 
     $scope.openForm = function(item){
@@ -98,6 +102,20 @@ app.controller('myCtrl', function($scope,$compile) {
          containerDiv.append(item.dirHtml);
         
     }
+
+    // $scope.$on('gridster-item-resized', function(item) {
+    //     debugger;
+    //     // item.$element
+    //     // item.gridster
+    //     // item.row
+    //     // item.col
+    //     // item.sizeX
+    //     // item.sizeY
+    //     // item.minSizeX
+    //     // item.minSizeY
+    //     // item.maxSizeX
+    //     // item.maxSizeY
+    // })
 });
 
 app.config(['$sceProvider', function($sceProvider) {
