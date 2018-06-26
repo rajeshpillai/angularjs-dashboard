@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/angular-gridster.min.css" />
+  <link rel="stylesheet" href="css/gridster-style.css" />
+
+  <!-- <script src="lib/jquery-1.9.0.min.js"></script>
+  <script src="lib/jquery-ui.min.js"></script> -->
+
+  <script src="lib/angularjs.min.js"></script>
+  <script src="lib/angularjs-gridster.js"></script>
+
+  
+  <!-- <script src="lib/angular-dragdrop.min.js"></script> -->
+  <script src="lib/draganddrop.js"></script>
+  <script src="lib/bootstrap-tmpl.min.js"></script>
+  
+  <script src="app.js"></script>
+  
+  
+</head>
+<body ng-app="myApp">
+  <div ng-controller="myCtrl">  
+      <!-- <ul>
+          <li class="btn btn-droppable" ng-repeat="item in listOfDirectives" data-drop="true" ng-model='listOfDirectives' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list5])'}"  jqyoui-droppable="{index: {{$index}}}" >
+            <div class="btn btn-info btn-draggable" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="listOfDirectives" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}" ng-hide="!item.title">{{item.title}}</div>
+         </li>
+      </ul>   
+
+      <div class="btn btn-primary" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="list1" jqyoui-draggable="{animate:true}" ng-hide="!list1.title">{{list1.title}}</div>
+      
+      <div class="thumbnail" data-drop="true" data-jqyoui-options ng-model="list2" jqyoui-droppable style='height:50px;'>
+            <div class="btn btn-success" data-drag="false" data-jqyoui-options ng-model="list2" jqyoui-draggable ng-hide="!list2.title">{{list2.title}}</div>
+      </div> -->
+      <!-- <kpi></kpi> -->
+      <!-- <div gridster>
+            <ul>
+                <li data-drop="true"  jqyoui-droppable  ng-model="list2"  
+                    gridster-item row="item.position[0]" col="item.position[1]" size-x="item.size.x" size-y="item.size.y"
+                         ng-repeat="item in standardItems"> 
+                         <div class="btn btn-success" data-drag="false" data-jqyoui-options ng-model="list2" jqyoui-draggable ng-hide="!list2.title">{{list2.title}}</div>                        
+                </li>
+            </ul>
+        </div> -->
+
+        <div class="row">
+                <div class="col-xs-6">
+                    <ul ui-on-Drop="onDrop($event,$data,listOfDirectivesDropped)">
+                        <li ui-draggable="true" drag="directive" 
+                        on-drop-success="dropSuccessHandler($event,$index,listOfDirectives)"
+                        ng-repeat="directive in listOfDirectives track by $index">
+                            {{directive.title}}
+                        </li>
+                    </ul>
+                </div>
+                <!-- <div class="col-xs-6">
+                    <ul ui-on-Drop="onDrop($event,$data,women)">
+                        <li ui-draggable="true" drag="woman" 
+                        on-drop-success="dropSuccessHandler($event,$index,women)"
+                        ng-repeat="woman in women track by $index">
+                            {{woman}}
+                        </li>
+                    </ul>
+                </div> -->
+
+               
+            </div>
+
+            <div class="row">
+                    <div class="col-xs-12">
+                    <div gridster>
+                            <ul>
+                                <li ui-on-Drop="onDrop($event,$data,item)"  
+                                    gridster-item row="item.position[0]" col="item.position[1]" size-x="item.size.x" size-y="item.size.y"
+                                         ng-repeat="item in standardItems" id="container{{$index}}">                                                                                 
+                                         <div ng-repeat="itemDroped in item.dropperItems">
+                                                <div style="float: right;font-size: 10px;" ng-show="item.dropperItems.length > 0">
+                                                        <a href="#" ng-click="openForm(itemDroped)" >Edit</a>
+                                                </div>                                                                                              
+                                                    <div class="form" style="  z-index: 9999;
+                                                    border: 1px solid black;
+                                                    padding: 19px;
+                                                    position: absolute;
+                                                    background-color: white;" ng-show="itemDroped.showForm">
+                                                    <div>close</div>
+                                                        <div   ng-repeat="prop in itemDroped.properties" >
+                                                                <div>
+                                                                    <label>{{prop.name}}</label>
+                                                                    <input type="text" ng-model="prop.value" >
+                                                                    <input type="button" value="Save" ng-click="SaveProperties(itemDroped)">
+                                                        </div>
+                                                        </div>
+                                                
+                                                    </div>
+                                            </div>
+                                            <renderarea></renderarea>
+
+                                         </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+  </div>
+</body>
+</html>
