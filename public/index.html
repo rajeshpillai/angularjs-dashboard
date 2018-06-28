@@ -5,22 +5,31 @@
   <meta name="viewport" content="width=device-width">
   <title>JS Bin</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/angular-gridster.min.css" />
-  <link rel="stylesheet" href="css/gridster-style.css" />
+  <link rel="stylesheet" href="./css/angular-gridster.min.css" />
+  <link rel="stylesheet" href="./css/gridster-style.css" />
 
   <!-- <script src="lib/jquery-1.9.0.min.js"></script>
   <script src="lib/jquery-ui.min.js"></script> -->
 
-  <script src="lib/angularjs.min.js"></script>
-  <script src="lib/angularjs-gridster.js"></script>
+  <script src="./lib/angularjs.min.js"></script>
+  <script src="./lib/angularjs-gridster.js"></script>
+  <script src="./lib/angular-sanitize.min.js"></script>
+ 
 
   
   <!-- <script src="lib/angular-dragdrop.min.js"></script> -->
-  <script src="lib/draganddrop.js"></script>
-  <script src="lib/bootstrap-tmpl.min.js"></script>
+  <script src="./lib/draganddrop.js"></script>
+  <script src="./lib/bootstrap-tmpl.min.js"></script>
+  <script src="./lib/lodash.js"></script>
+  <script src="./lib/numeral.min.js"></script>
   
-  <script src="app.js"></script>
   
+  <script src="./app.js"></script>
+  <script src="./service/dataService.js"></script>
+  <script src="./service/utility-service.js"></script>
+
+  <script src="./directives/filter-directive.js"></script>
+  <script src="./directives/kpi-directive.js"></script>
   
 </head>
 <body ng-app="myApp">
@@ -90,11 +99,10 @@
                                                         <div   ng-repeat="prop in itemDroped.properties" >
                                                                 <div>
                                                                     <label>{{prop.name}}</label>
-                                                                    <input type="text" ng-model="prop.value" >
-                                                                    <input type="button" value="Save" ng-click="SaveProperties(itemDroped)">
+                                                                    <input type="text" ng-model="prop.value" >                                                                    
+                                                                </div>                                                        
                                                         </div>
-                                                        </div>
-                                                
+                                                        <input type="button" value="Save" ng-click="SaveProperties(itemDroped)">
                                                     </div>
                                             </div>
                                             <renderarea></renderarea>

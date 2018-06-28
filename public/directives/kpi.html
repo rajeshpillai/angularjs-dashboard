@@ -1,0 +1,78 @@
+<!-- <h2>{{value}}</h2> -->
+
+<span ng-if="vm.properties && vm.properties.ShowProgress==false" ng-style="{'font-size':vm.properties.FontSize}">
+    <span ng-if="vm.properties && vm.properties.ShowIcon==true">
+        {{vm.data}}
+        <i ng-repeat="vc in vm.visualCue" ng-if="vm.value>vc.from && vm.value<= vc.to" ng-class="{'glyphicon glyphicon-triangle-bottom':vc.icon=='down','glyphicon glyphicon-triangle-top':vc.icon=='up','glyphicon glyphicon-stop':vc.icon=='square'}" ng-style="{color:vc.color}"></i>
+
+
+    </span>
+    <span ng-if="!vm.properties.ShowInDiffLine"><span ng-if="vm.label && vm.label.length>0" class="db-label" ng-style="{color:vm.properties.LabelColor}"><b>{{vm.label}} {{vm.properties.Separator}}</span>&nbsp;<span ng-bind-html="vm.formattedValue"></span></b></span>
+    <div class="text-center" ng-if="vm.properties.ShowInDiffLine"><div ng-if="vm.label && vm.label.length>0" ng-style="{color:vm.properties.LabelColor}"><strong>{{vm.label}} {{vm.properties.Separator}} </strong></div><strong>&nbsp;<span ng-bind-html="vm.formattedValue"></span></strong></div>
+    
+</span>
+<!--This is to show Circle around KPI-->
+<span ng-repeat="vc in vm.visualCue" ng-if="vm.properties && vm.properties.ShowProgress==true && vm.value>vc.from && vm.value<= vc.to" ng-style="{'font-size':vm.properties.FontSize, 'border-color':vc.color}" ng-class="{'progressCircle': vm.properties && vm.properties.ShowProgress==true, 'lg-progressCircle':vm.formattedValue.length>5}">
+    <span ng-if="vm.properties && vm.properties.ShowIcon==true">
+
+        <!--<i ng-repeat="vc in vm.visualCue" ng-if="vm.value>vc.from && vm.value<= vc.to" class="glyphicon glyphicon-alert" ng-style="{color:vc.color}"></i>-->
+        <i ng-class="{'glyphicon glyphicon-triangle-bottom':vc.icon=='down','glyphicon glyphicon-triangle-top':vc.icon=='up','glyphicon glyphicon-stop':vc.icon=='square'}" ng-style="{color:vc.color}"></i>
+
+
+    </span>
+    <span ng-if="!vm.properties.ShowInDiffLine"><span ng-if="vm.label && vm.label.length>0" ng-style="{color:vm.properties.LabelColor}"><b>{{vm.label}} {{vm.properties.Separator}}</span> {{vm.formattedValue}}</b></span>
+    <div class="text-center" ng-if="vm.properties.ShowInDiffLine"><div ng-if="vm.label && vm.label.length>0" ng-style="{color:vm.properties.LabelColor}"><strong>{{vm.label}} {{vm.properties.Separator}} </strong></div><strong>{{vm.formattedValue}}</strong></div>
+    <span style=" font-size: 11px;
+    display: block;
+    margin-top: -2px;
+    text-align: center;
+    color: #AEAEAE;">{{vm.properties.ProgressLabel}}<!--Actual v/s Budget--></span>
+</span>
+<i class="fa fa-spinner fa-spin" aria-hidden="true" ng-show="vm.loading"></i>
+
+<!--<span ng-style="{'font-size':vm.properties.FontSize}" ng-class="{progressCircle: vm.properties && vm.properties.ShowProgress==true}">
+    <span ng-if="vm.properties && vm.properties.ShowIcon==true">
+       
+        <i ng-repeat="vc in vm.visualCue" ng-if="vm.value>vc.from && vm.value<= vc.to" ng-class="{'glyphicon glyphicon-triangle-bottom':vc.icon=='down','glyphicon glyphicon-triangle-top':vc.icon=='up','glyphicon glyphicon-stop':vc.icon=='square'}" ng-style="{color:vc.color}"></i>
+
+
+    </span>
+    <span ng-if="!vm.properties.ShowInDiffLine"><span ng-if="vm.label && vm.label.length>0" ng-style="{color:vm.properties.LabelColor}"><b>{{vm.label}} {{vm.properties.Separator}}</span> {{vm.formattedValue}}</b></span>
+    <div class="text-center" ng-if="vm.properties.ShowInDiffLine"><div ng-if="vm.label && vm.label.length>0" ng-style="{color:vm.properties.LabelColor}"><strong>{{vm.label}} {{vm.properties.Separator}} </strong></div><strong>{{vm.formattedValue}}</strong></div>
+
+</span>-->
+ <!--<div class="progress" ng-if="vm.properties && vm.properties.ShowProgress==true">
+    <div ng-repeat="vc in vm.visualCue" ng-if="vm.value>vc.from && vm.value<= vc.to"  class="progress-bar " role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%" ng-style="{'background-color':vc.color}">
+    </div>
+   <div class="row" ng-repeat="vc in vm.visualCue" ng-if="vm.value>vc.from && vm.value<= vc.to">
+        <div class="">
+          
+            <div ng-if="vm.value>1" class="bar-step" style="left: 55%">
+
+                <div class="label-percent">>100</div>
+                <div class="label-line"></div>
+            </div>
+            <div class="progress-bar " style="width: 46%;" ng-style="{'background-color':vc.color,'width':(vm.value>1?100:vm.value*100)%}">46%</div>
+        </div>
+    </div>-->
+</div>
+
+
+
+        <!--<div class="col-xs-12">
+    <div class="progress">
+        <div class="bar-step" style="left: 75%">           
+
+        </div>
+        <div class="bar-step" style="left: 10%">
+
+        </div>
+        <div class="bar-step" style="left: 55%">
+
+            <div class="label-percent">55%</div>
+            <div class="label-line"></div>
+        </div>
+        <div class="progress-bar progress-bar-success" style="width: 46%;">46%</div>
+    </div>
+</div>-->
+	    
